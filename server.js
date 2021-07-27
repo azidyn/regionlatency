@@ -1,9 +1,12 @@
 
+const port = 3000;
+
 const { performance } = require('perf_hooks');
 const request = require('request-promise');
 const http              = require('http');
 const express           = require('express');
 
+const region = process.argv[2] || 'unknown';
 
 // var WebSocket = require('rpc-websockets').Client
 const WebSocketServer = require('rpc-websockets').Server;
@@ -29,7 +32,6 @@ app.use(express.static('public'));
 const httpserver = http.createServer( app );
 const wserver = new WebSocketServer({ server: httpserver });
 
-const port = 3000;
 
 (async()=>{
 
@@ -58,6 +60,7 @@ const port = 3000;
             const p = performance.now() - t;
 
             return { result: {
+                region,
                 exchange: ex,
                 time: p
             } };
@@ -71,7 +74,7 @@ const port = 3000;
     });
 
     httpserver.listen(port || 8000, () => {
-        console.log(`=> WS Server listening on port ${httpserver.address().port}`);
+        console.log(`=> ${region} | server listening on port ${httpserver.address().port}`);
     });
 
 })();

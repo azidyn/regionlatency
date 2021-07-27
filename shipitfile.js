@@ -7,12 +7,12 @@ module.exports = shipit => {
 
     shipit.initConfig({
         default: {
-             deployTo: '/var/www/inserver',
-             repositoryUrl: 'git@github.com:azidyn/inserver.git'
+             deployTo: '/var/www/regionlatency',
+             repositoryUrl: 'git@github.com:azidyn/regionlatency.git'
         },
-        insdeapp1: { servers: 'root@insdeapp1' },
-        insdeapp2: { servers: 'root@insdeapp2' },
-        insdeapp3: { servers: 'root@insdeapp3' }
+        instestjp: { servers: 'root@instestjp' },
+        instestsin: { servers: 'root@instestsin' },
+        instestnl: { servers: 'root@instestnl' },
     });
 
     shipit.on('deployed', () => {        
